@@ -1,6 +1,6 @@
 //프로그래머스 Lv1 나누어 떨어지는 숫자 배열
 
-// 0.06~0.24ms, 최대 2.36ms
+// 1. filter 사용 => 0.06~0.24ms, 최대 2.36ms
 function solution(arr, divisor) {
   let answer = [];
   answer = arr.filter((v) => v % divisor === 0).sort((a, b) => a - b);
