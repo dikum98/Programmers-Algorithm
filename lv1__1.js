@@ -2,8 +2,8 @@
 
 // 1. filter 사용 => 0.1ms
 function solution(s) {
-  const pCount = s.split("").filter((v) => v === "p" || v === "P").length;
-  const yCount = s.split("").filter((v) => v === "y" || v === "Y").length;
+  const pCount = s.split('').filter((v) => v === 'p' || v === 'P').length;
+  const yCount = s.split('').filter((v) => v === 'y' || v === 'Y').length;
   return pCount === yCount;
 }
 
@@ -12,9 +12,9 @@ function solution(s) {
   let pCount = 0;
   let yCount = 0;
   console.log(pCount, yCount);
-  s.split("").forEach((v) => {
-    if (v === "p" || v === "P") pCount++;
-    if (v === "y" || v === "Y") yCount++;
+  s.split('').forEach((v) => {
+    if (v === 'p' || v === 'P') pCount++;
+    if (v === 'y' || v === 'Y') yCount++;
   });
   return pCount === yCount;
 }
@@ -24,8 +24,20 @@ function solution(s) {
   let pCount = 0;
   let yCount = 0;
   for (let i = 0; i < s.length; i++) {
-    if (s[i] === "p" || s[i] === "P") pCount++;
-    if (s[i] === "y" || s[i] === "Y") yCount++;
+    if (s[i] === 'p' || s[i] === 'P') pCount++;
+    if (s[i] === 'y' || s[i] === 'Y') yCount++;
   }
   return pCount === yCount;
+}
+
+function solution(s) {
+  const count = s.split('').reduce(
+    (acc, cur) => {
+      if (cur === 'p' || cur === 'P') return [++acc[0], acc[1]];
+      else if (cur === 'y' || cur === 'Y') return [acc[0], ++acc[1]];
+      return [acc[0], acc[1]];
+    },
+    [0, 0]
+  );
+  return count[0] === count[1] ? true : false;
 }
