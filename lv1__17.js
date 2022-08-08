@@ -27,3 +27,25 @@ function solution(n, lost, reserve) {
   lost = lost.filter((v) => v);
   return n - lost.length;
 }
+
+function solution(n, lost, reserve) {
+  // n명의 학생이 체육복을 가지고 있다가
+  const clothesState = Array(n).fill(1);
+
+  // 도난 당한 경우, 여벌이 있는 경우를 적용
+  for (let i = 0; i < n; i++) {
+    if (lost.includes(i + 1)) clothesState[i] -= 1;
+    if (reserve.includes(i + 1)) clothesState[i] += 1;
+  }
+
+  for (let i = 0; i < n; i++) {
+    if (i >= 1 && clothesState[i] === 2 && clothesState[i - 1] === 0) {
+      clothesState[i] -= 1;
+      clothesState[i - 1] += 1;
+    } else if (clothesState[i] === 2 && clothesState[i + 1] === 0) {
+      clothesState[i] -= 1;
+      clothesState[i + 1] += 1;
+    }
+  }
+  return clothesState.filter((v) => v !== 0).length;
+}
